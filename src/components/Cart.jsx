@@ -12,9 +12,7 @@ const Cart = () => {
   const { cartItems, totalPrice, totalQuantity, setShowCart, removeItem, toggleProductQuantity } =
     useCartContext();
 
-  const [discount, setDiscount] = useState(0)
-  const [code, setCode] = useState('')
-  
+  const [discount, setDiscount] = useState(0)  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify({
@@ -29,7 +27,7 @@ const Cart = () => {
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cartItems, code }),
+      body: JSON.stringify({ cartItems }),
     });
 
     const data = await res.json();
@@ -39,7 +37,6 @@ const Cart = () => {
 
   const handleApplyCoupon = (code) => {
     // Example Logic (You can replace it with API check)
-setCode(code)
     if (code === "SALE10") {
       setDiscount(10); // 10% off
     }

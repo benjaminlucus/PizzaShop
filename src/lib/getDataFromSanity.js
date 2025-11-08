@@ -10,6 +10,7 @@ export default async function getDataFromSanity() {
     }`);
   const bannerData = await client.fetch(`*[_type == "banner"]{
       tagline,
+      _id,
       headline,
       description,
       "imageUrl": image.asset->url

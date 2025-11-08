@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
   try {
-    const { cartItems, code } = await req.json();
+    const { cartItems } = await req.json();
 
     const lineItems = cartItems.map((item) => ({
       price_data: {
@@ -32,9 +32,7 @@ export async function POST(req) {
     const sessionConfig = {
             payment_method_types: ["card"],
       mode: "payment",
-      discounts: [{
-        coupon: code
-      }],
+      
       billing_address_collection: "required",
       shipping_address_collection: {
         allowed_countries: ["US", "CA", "PK", "IN"]
@@ -57,12 +55,6 @@ export async function POST(req) {
       cancel_url: `${req.headers.get("origin")}/cart`,
     };
 
-    // Apply discount only if  Code exists
-    if ( code) {
-      sessionConfig.discounts = [
-        {  tion_code:  code } // must be promo_xxx from Stripe
-      ];
-    }
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
 

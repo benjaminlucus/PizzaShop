@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
+
 const HeroSection = ({ banner }) => {
+  console.log(banner)
   return (
     <section className="w-full bg-gray-100 py-10 md:py-20 overflow-hidden">
       <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14">
@@ -30,12 +33,12 @@ const HeroSection = ({ banner }) => {
           </h1>
 
           <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-md mx-auto md:mx-0 mb-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatum accusamus error minus officiis! Neque natus autem esse quo ullam ab in fuga qui corrupti, praesentium impedit, ducimus optio ex.
+{banner?.description}
           </p>
 
-          <button className="px-8 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition">
+          <Link href={`/product/${banner._id}`}><button className="px-8 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition">
             Shop Now
-          </button>
+          </button></Link>
         </div>
 
       </div>

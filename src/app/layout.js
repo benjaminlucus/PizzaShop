@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Pizza Perfection",
-  description: "An amazing pizza ordering web app",
+  title: "E-commerce website | Home Page",
+  description: "An amazing ecommerce web app",
 };
 
 export default function RootLayout({ children }) {
@@ -30,11 +30,14 @@ export default function RootLayout({ children }) {
         <meta name="author" content="Pizza Perfection Team" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <CartProvider>
           <Navbar />
+          <main className="flex-grow">
+
           {children}
+          </main>
           <Footer />
         </CartProvider>
       </body>
